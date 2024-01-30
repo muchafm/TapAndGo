@@ -8,3 +8,6 @@ build:
 
 up:
 	docker-compose up -d
+
+phpstan:
+	docker-compose exec api vendor/bin/phpstan
