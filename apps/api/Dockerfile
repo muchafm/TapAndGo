@@ -62,6 +62,7 @@ USER 1000
 
 ENV APP_ENV=dev
 ENV APP_DEBUG=1
+ENV APP_SECRET="#B{KV:ijP\>@~3<~9)"
 
 COPY --chown=1000 . /usr/src/app
 COPY --chown=1000 --from=vendor-dev /usr/src/app/vendor /usr/src/app/vendor

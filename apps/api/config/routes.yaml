@@ -1,5 +1,39 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+cities:
+  path: api/cities
+  controller: App\Application\REST\City\Collection\GET
+  methods: GET
+
+city_get:
+  path: api/cities/{id}
+  controller: App\Application\REST\City\Resource\GET
+  methods: GET
+
+city_post:
+  path: api/cities
+  controller: App\Application\REST\City\Resource\POST
+  methods: POST
+
+city_put:
+  path: api/cities/{id}
+  controller: App\Application\REST\City\Resource\PUT
+  methods: PUT
+
+stations:
+  path: api/stations
+  controller: App\Application\REST\Station\Collection\GET
+  methods: GET
+
+station_get:
+  path: api/stations/{id}
+  controller: App\Application\REST\Station\Resource\GET
+  methods: GET
+
+station_post:
+  path: api/stations
+  controller: App\Application\REST\Station\Resource\POST
+  methods: POST
+
+station_put:
+  path: api/stations/{id}
+  controller: App\Application\REST\Station\Resource\PUT
+  methods: PUT
