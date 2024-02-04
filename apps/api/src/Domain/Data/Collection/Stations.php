@@ -22,4 +22,8 @@ interface Stations
      * @return array<int, Station>
      */
     public function findByIds(array $ids): array;
+
+    public function persist(Station $station): void;
+
+    public function remove(Station $station): void;
 }

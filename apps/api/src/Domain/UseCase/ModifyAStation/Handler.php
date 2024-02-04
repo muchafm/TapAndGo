@@ -56,6 +56,8 @@ readonly class Handler
             $station->availableBikes = $input->availableBikes;
         }
 
+        $this->stations->persist($station);
+        
         return new Output($station);
     }
 }

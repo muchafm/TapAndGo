@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\REST\City\Collection;
 
 use App\Application\MessageBus;
+use App\Domain\Data\Model\Station;
 use App\Domain\UseCase\RetrieveAllCities;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -47,7 +48,7 @@ final readonly class GET
                 'latitude' => $city->position->latitude,
                 'longitude' => $city->position->longitude,
                 'isActive' => $city->isActive,
-                'stationIds' => $city->stations
+                'stationIds' => 0 === \count($city->stations->toArray()) ? null : array_map(fn (Station $station): string => $station->id, $city->stations->toArray())
             ];
         }
     }

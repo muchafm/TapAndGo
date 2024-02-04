@@ -43,4 +43,16 @@ final readonly class CityRepository implements Domain\Data\Collection\Cities
     {
         return $this->repository->findAll();
     }
+
+    public function persist(Domain\Data\Model\City $city): void
+    {
+        $this->registry->getManager()->persist($city);
+        $this->registry->getManager()->flush();
+    }
+
+    public function remove(Domain\Data\Model\City $city): void
+    {
+        $this->registry->getManager()->remove($city);
+        $this->registry->getManager()->flush();
+    }
 }

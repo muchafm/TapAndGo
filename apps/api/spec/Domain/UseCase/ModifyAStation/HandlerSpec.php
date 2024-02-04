@@ -32,6 +32,7 @@ class HandlerSpec extends ObjectBehavior
         $input = new Input('station-id', null, null, null, null, null, 10, null);
 
         $stations->find('station-id')->willReturn($station);
+        $stations->persist($station)->shouldBeCalled();
 
         $output = $this->__invoke($input);
 

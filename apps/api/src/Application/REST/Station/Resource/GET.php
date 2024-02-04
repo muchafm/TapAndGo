@@ -47,9 +47,7 @@ final readonly class GET
              */
             $output = $this->messageBus->handle(new RetrieveAStation\Input($id));
         } catch (StationNotFoundException $stationNotFoundException) {
-            throw new NotFoundHttpException(
-                previous: $stationNotFoundException
-            );
+            return new JsonResponse($stationNotFoundException->getMessage(), Response::HTTP_NOT_FOUND, json: true);
         }
 
         return new JsonResponse($this->serialize($output), Response::HTTP_OK);

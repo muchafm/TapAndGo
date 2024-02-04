@@ -46,9 +46,7 @@ final readonly class GET
              */
             $output = $this->messageBus->handle(new RetrieveACity\Input($id));
         } catch (CityNotFoundException $cityNotFoundException) {
-            throw new NotFoundHttpException(
-                previous: $cityNotFoundException
-            );
+            return new JsonResponse($cityNotFoundException->getMessage(), Response::HTTP_NOT_FOUND, json: true);
         }
 
         return new JsonResponse($this->serialize($output), Response::HTTP_OK);

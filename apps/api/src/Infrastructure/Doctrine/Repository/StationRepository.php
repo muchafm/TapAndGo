@@ -52,4 +52,16 @@ final readonly class StationRepository implements Domain\Data\Collection\Station
     {
         return $this->repository->findBy($ids);
     }
+
+    public function persist(Domain\Data\Model\Station $station): void
+    {
+        $this->registry->getManager()->persist($station);
+        $this->registry->getManager()->flush();
+    }
+
+    public function remove(Domain\Data\Model\Station $station): void
+    {
+        $this->registry->getManager()->remove($station);
+        $this->registry->getManager()->flush();
+    }
 }

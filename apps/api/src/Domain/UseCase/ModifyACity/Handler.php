@@ -46,6 +46,8 @@ readonly class Handler
             $city->isActive = $input->isActive;
         }
 
+        $this->cities->persist($city);
+
         return new Output($city);
     }
 }

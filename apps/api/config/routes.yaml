@@ -18,6 +18,11 @@ city_patch:
   controller: App\Application\REST\City\Resource\PATCH
   methods: PATCH
 
+city_delete:
+  path: api/cities/{id}
+  controller: App\Application\REST\City\Resource\DELETE
+  methods: DELETE
+
 stations:
   path: api/stations
   controller: App\Application\REST\Station\Collection\GET
@@ -37,3 +42,8 @@ station_patch:
   path: api/stations/{id}
   controller: App\Application\REST\Station\Resource\PATCH
   methods: PATCH
+
+station_delete:
+  path: api/stations/{id}
+  controller: App\Application\REST\Station\Resource\DELETE
+  methods: DELETE
