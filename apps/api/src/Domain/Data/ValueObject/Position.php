@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Data\ValueObject;
 
-final class Position
+final readonly class Position
 {
-    public function __construct(public readonly float $latitude, public readonly float $longitude)
+    public function __construct(public float $latitude, public float $longitude)
     {
     }
 }
