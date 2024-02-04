@@ -19,3 +19,6 @@ migrate:
 
 phpstan:
 	docker-compose exec api vendor/bin/phpstan
+
+phpspec:
+	docker-compose exec api vendor/bin/phpspec run

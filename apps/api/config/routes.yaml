@@ -13,10 +13,10 @@ city_post:
   controller: App\Application\REST\City\Resource\POST
   methods: POST
 
-city_put:
+city_patch:
   path: api/cities/{id}
-  controller: App\Application\REST\City\Resource\PUT
-  methods: PUT
+  controller: App\Application\REST\City\Resource\PATCH
+  methods: PATCH
 
 stations:
   path: api/stations
@@ -33,7 +33,7 @@ station_post:
   controller: App\Application\REST\Station\Resource\POST
   methods: POST
 
-station_put:
+station_patch:
   path: api/stations/{id}
-  controller: App\Application\REST\Station\Resource\PUT
-  methods: PUT
+  controller: App\Application\REST\Station\Resource\PATCH
+  methods: PATCH

@@ -6,7 +6,7 @@ namespace App\Domain\Data\Model;
 
 use App\Domain\Data\ValueObject;
 
-final class Station
+class Station
 {
     public string $id;
 

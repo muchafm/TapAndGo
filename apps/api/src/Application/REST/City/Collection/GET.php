@@ -46,7 +46,8 @@ final readonly class GET
                 'name' => $city->name,
                 'latitude' => $city->position->latitude,
                 'longitude' => $city->position->longitude,
-                'isActive' => $city->isActive
+                'isActive' => $city->isActive,
+                'stationIds' => $city->stations
             ];
         }
     }

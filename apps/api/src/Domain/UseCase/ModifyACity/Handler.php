@@ -25,7 +25,7 @@ readonly class Handler
             throw new CityNotFoundException($input->id);
         }
         
-        if (null !== $input->stationIds && \count($input->stationIds) === 0) {
+        if (null !== $input->stationIds && \count($input->stationIds) !== 0) {
             $stations = $this->stations->findByIds($input->stationIds);
             $city->setStations($stations);
         }

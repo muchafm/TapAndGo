@@ -15,14 +15,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-final readonly class PUT
+final readonly class PATCH
 {
     public function __construct(private MessageBus $messageBus)
     {
 
     }
 
-    #[Route('/api/stations/{id}', methods:'PUT')]
+    #[Route('/api/stations/{id}', methods:'PATCH')]
     #[OA\RequestBody(
             description: 'Update a station',
             required: true, 
@@ -62,13 +62,13 @@ final readonly class PUT
             $output = $this->messageBus->handle(
                 new ModifyAStation\Input(
                     $id,
-                    $data['name'], 
-                    $data['address'], 
-                    $data['latitude'], 
-                    $data['longitude'], 
-                    $data['totalStands'],
-                    $data['availableBikes'],
-                    $data['city']
+                    $data['name'] ?? null, 
+                    $data['address'] ?? null, 
+                    $data['latitude'] ?? null, 
+                    $data['longitude'] ?? null, 
+                    $data['totalStands'] ?? null,
+                    $data['availableBikes'] ?? null,
+                    $data['city'] ?? null
                 )
             );
 

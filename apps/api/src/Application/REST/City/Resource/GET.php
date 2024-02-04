@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\REST\City\Resource;
 
 use App\Application\MessageBus;
+use App\Domain\Data\Model\Station;
 use App\Domain\UseCase\RetrieveACity;
 use App\Domain\Exception\CityNotFoundException;
 use OpenApi\Attributes as OA;
@@ -54,7 +55,7 @@ final readonly class GET
     }
 
     /**
-     * @return array<string, ?scalar>
+     * @return array<string, array<string>|scalar>
      */
     private function serialize(RetrieveACity\Output $output): array
     {
@@ -63,7 +64,8 @@ final readonly class GET
             'name' => $output->city->name,
             'latitude' => $output->city->position->latitude,
             'longitude' => $output->city->position->longitude,
-            'isActive' => $output->city->isActive
+            'isActive' => $output->city->isActive,
+            'stationIds' => 0 === \count($output->city->stations->toArray()) ? null : array_map(fn (Station $station): string => $station->id, $output->city->stations->toArray())
         ];
     }
 }

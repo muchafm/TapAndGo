@@ -15,14 +15,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-final readonly class PUT
+final readonly class PATCH
 {
     public function __construct(private MessageBus $messageBus)
     {
 
     }
 
-    #[Route('/api/cities/{id}', methods:'PUT')]
+    #[Route('/api/cities/{id}', methods:'PATCH')]
     #[OA\RequestBody(
             description: 'Update a city',
             required: true,
@@ -30,7 +30,6 @@ final readonly class PUT
                 mediaType: "application/json", 
                 schema: new OA\Schema(
                     properties: [
-                        new OA\Property(property: 'id', description: 'Id of the city', type: 'string'),
                         new OA\Property(property: 'name', description: 'Name of the city', type: 'string'),
                         new OA\Property(property: 'latitude', description: 'Latitude point', type: 'float'),
                         new OA\Property(property: 'longitude', description: 'Longitude', type: 'float'),
@@ -58,7 +57,16 @@ final readonly class PUT
             /**
              * @var ModifyACity\Output $output
              */
-            $output = $this->messageBus->handle(new ModifyACity\Input($id, $data['name'], $data['latitude'], $data['longitude'], $data['isActive'], $data['stationIds']));
+            $output = $this->messageBus->handle(
+                new ModifyACity\Input(
+                    $id, 
+                    $data['name'] ?? null, 
+                    $data['latitude'] ?? null, 
+                    $data['longitude'] ?? null, 
+                    $data['isActive'] ?? null, 
+                    $data['stationIds'] ?? null
+                )
+            );
 
             return new JsonResponse($this->serialize($output), Response::HTTP_OK);
         } catch (CityNotFoundException $exception) {

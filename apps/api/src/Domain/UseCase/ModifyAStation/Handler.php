@@ -24,8 +24,12 @@ readonly class Handler
             throw new StationNotFoundException($input->id);
         }
 
-        if (null === $city = $this->cities->find($input->cityId)) {
-            throw new CityNotFoundException($input->cityId);
+        if (null !== $input->cityId) {
+            if (null === $city = $this->cities->find($input->cityId)) {
+                throw new CityNotFoundException($input->cityId);
+            }
+
+            $station->city = $city;
         }
 
         if (null !== $input->name) {

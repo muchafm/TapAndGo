@@ -25,6 +25,7 @@
         "zircote/swagger-php": "^4.8"
     },
     "require-dev": {
+        "phpspec/phpspec": "^7.5",
         "phpstan/phpstan": "^1.10",
         "symfony/var-dumper": "6.4.*",
         "symfony/web-profiler-bundle": "6.4.*"

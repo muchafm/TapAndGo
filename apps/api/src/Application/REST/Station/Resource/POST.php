@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Application\REST\Station\Resource;
 
 use App\Application\MessageBus;
+use App\Domain\Exception\CityNotFoundException;
 use App\Domain\UseCase\AddAStation;
-use App\Domain\Exception\StationNotFoundException;
 use JsonException;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -55,22 +55,26 @@ final readonly class POST
             return new JsonResponse($exception->getMessage(), Response::HTTP_BAD_REQUEST, json: true);
         }
 
-        /**
-         * @var AddAStation\Output $output
-         */
-        $output = $this->messageBus->handle(
-            new AddAStation\Input(
-                $data['name'], 
-                $data['address'], 
-                $data['latitude'], 
-                $data['longitude'], 
-                $data['totalStands'],
-                $data['availableBikes'],
-                $data['city']
-            )
-        );
+        try {
+            /**
+             * @var AddAStation\Output $output
+             */
+            $output = $this->messageBus->handle(
+                new AddAStation\Input(
+                    $data['name'], 
+                    $data['address'], 
+                    $data['latitude'], 
+                    $data['longitude'], 
+                    $data['totalStands'],
+                    $data['availableBikes'],
+                    $data['city']
+                )
+            );
 
-        return new JsonResponse($this->serialize($output), Response::HTTP_CREATED);
+            return new JsonResponse($this->serialize($output), Response::HTTP_CREATED);
+        } catch (CityNotFoundException $cityNotFoundException) {
+            return new JsonResponse($cityNotFoundException->getMessage(), json: true);
+        }
     }
 
     /**
