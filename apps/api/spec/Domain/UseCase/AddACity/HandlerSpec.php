@@ -4,6 +4,7 @@ namespace spec\App\Domain\UseCase\AddACity;
 
 use App\Domain\Data\Collection\Cities;
 use App\Domain\Data\Model\City;
+use App\Domain\Exception\CityAlreadyExistsException;
 use App\Domain\UseCase\AddACity\Handler;
 use App\Domain\UseCase\AddACity\Input;
 use App\Domain\UseCase\AddACity\Output;
@@ -27,6 +28,8 @@ class HandlerSpec extends ObjectBehavior
     {
         $input = new Input('Lyon', 49.898124385191046, 2.299395003901743, true);
 
+        $cities->findByName('Lyon')->willReturn(null);
+
         $cities->add(Argument::type(City::class))->shouldBeCalled();
 
         $output = $this->__invoke($input);
@@ -36,5 +39,16 @@ class HandlerSpec extends ObjectBehavior
         $output->city->position->latitude->shouldBe(49.898124385191046);
         $output->city->position->longitude->shouldBe(2.299395003901743);
         $output->city->isActive->shouldBe(true);
+    }
+
+    public function it_throws_an_exception_when_the_name_of_the_city_already_exists(Cities $cities, City $city)
+    {
+        $input = new Input('Lyon', 49.898124385191046, 2.299395003901743, true);
+
+        $cities->findByName('Lyon')->willReturn($city);
+
+        $cities->add(Argument::type(City::class))->shouldNotBeCalled();
+
+        $this->shouldThrow(CityAlreadyExistsException::class)->during('__invoke', [$input]);
     }
 }

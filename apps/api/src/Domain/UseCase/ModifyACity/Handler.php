@@ -27,7 +27,12 @@ readonly class Handler
         
         if (null !== $input->stationIds && \count($input->stationIds) !== 0) {
             $stations = $this->stations->findByIds($input->stationIds);
-            $city->setStations($stations);
+
+            foreach ($stations as $station) {
+                if (!\in_array($station, $city->stations->toArray())) {
+                    $city->addStation($station);
+                }
+            }
         }
         
         if (null !== $input->name) {

@@ -7,7 +7,7 @@
     <entity name="App\Domain\Data\Model\City">
         <id name="id" type="guid" />
 
-        <field name="name" type="string" />
+        <field name="name" type="string" unique="true" />
         <field name="position" type="positionType" />
         <field name="isActive" type="boolean"/>
         <one-to-many

@@ -26,12 +26,8 @@ class City
         $this->stations = new ArrayCollection();
     }
 
-    /**
-     * @param array<Station> $stations
-     */
-    public function setStations(array $stations): void
+    public function addStation(Station $station): void
     {
-
-        $this->stations = new ArrayCollection($stations);
+        $this->stations->add($station);
     }
 }

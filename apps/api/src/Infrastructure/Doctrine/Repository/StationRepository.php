@@ -50,7 +50,7 @@ final readonly class StationRepository implements Domain\Data\Collection\Station
      */
     public function findByIds(array $ids): array
     {
-        return $this->repository->findBy($ids);
+        return $this->repository->findBy(['id' => $ids]);
     }
 
     public function persist(Domain\Data\Model\Station $station): void

@@ -44,6 +44,17 @@ final readonly class CityRepository implements Domain\Data\Collection\Cities
         return $this->repository->findAll();
     }
 
+    public function findByName(string $name): ?Domain\Data\Model\City
+    {
+        return $this->repository
+            ->createQueryBuilder('city')
+            ->where('city.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     public function persist(Domain\Data\Model\City $city): void
     {
         $this->registry->getManager()->persist($city);

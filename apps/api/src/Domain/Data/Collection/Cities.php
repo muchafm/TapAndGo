@@ -17,6 +17,8 @@ interface Cities
      */
     public function findAll(): array;
 
+    public function findByName(string $name): ?City;
+
     public function persist(City $city): void;
 
     public function remove(City $city): void;

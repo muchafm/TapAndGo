@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\REST\City\Resource;
 
 use App\Application\MessageBus;
+use App\Domain\Exception\CityAlreadyExistsException;
 use App\Domain\UseCase\AddACity;
 use JsonException;
 use OpenApi\Attributes as OA;
@@ -51,12 +52,17 @@ final readonly class POST
             return new JsonResponse($exception->getMessage(), Response::HTTP_BAD_REQUEST, json: true);
         }
 
-        /**
-         * @var AddACity\Output $output
-         */
-        $output = $this->messageBus->handle(new AddACity\Input($data['name'], $data['latitude'], $data['longitude'], $data['isActive']));
+        
+        try {
+            /**
+             * @var AddACity\Output $output
+             */
+            $output = $this->messageBus->handle(new AddACity\Input($data['name'], $data['latitude'], $data['longitude'], $data['isActive']));
 
-        return new JsonResponse($this->serialize($output), Response::HTTP_CREATED);
+            return new JsonResponse($this->serialize($output), Response::HTTP_CREATED);
+        } catch (CityAlreadyExistsException $cityAlreadyExistsException) {
+            return new JsonResponse($cityAlreadyExistsException->getMessage(), Response::HTTP_BAD_REQUEST, json: true);
+        }
     }
 
     /**
