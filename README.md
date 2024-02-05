@@ -19,3 +19,11 @@ And
 Then
 
 ``` docker-compose up -d ```
+``` docker-compose run --rm api composer install ```
+``` docker-compose run --rm api bin/console doctrine:database:drop --if-exists --force ```
+``` docker-compose run --rm api bin/console doctrine:database:create --if-not-exists ```
+```docker-compose run --rm api bin/console doctrine:migration:migrate ```
+
+# Tests
+
+``` docker-compose exec api vendor/bin/phpspec run ```
