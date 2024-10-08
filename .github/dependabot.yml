@@ -1,0 +1,40 @@
+version: 2
+updates:
+  - package-ecosystem: composer
+    directory: ./php
+    labels:
+      - dependencies
+      - ':elephant: PHP'
+    commit-message:
+      prefix: chore
+    schedule:
+      interval: weekly
+      day: monday
+      time: '07:00'
+      timezone: Europe/Paris
+    open-pull-requests-limit: 3
+    allow:
+      - dependency-name: 'symfony/*'
+      - dependency-name: 'webmozart/assert'
+    groups:
+      symfony:
+        update-types:
+          - 'minor'
+        patterns:
+          - 'symfony/*'
+
+  - package-ecosystem: docker
+    directory: ./php
+    labels:
+      - dependencies
+      - ':whale: Dockerfile'
+    commit-message:
+      prefix: chore
+    schedule:
+      interval: weekly
+      day: monday
+      time: '07:00'
+      timezone: Europe/Paris
+    open-pull-requests-limit: 3
+    allow:
+      - dependency-name: 'composer'
