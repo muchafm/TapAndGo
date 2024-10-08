@@ -12,7 +12,6 @@ use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 final readonly class POST
 {
@@ -21,7 +20,6 @@ final readonly class POST
 
     }
 
-    #[Route('/api/stations', methods:'POST')]
     #[OA\RequestBody(
             description: 'Add a new station',
             required: true, 

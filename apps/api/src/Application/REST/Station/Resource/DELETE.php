@@ -10,7 +10,6 @@ use App\Domain\Exception\CityNotFoundException;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 final readonly class DELETE
 {
@@ -19,7 +18,6 @@ final readonly class DELETE
 
     }
 
-    #[Route('/api/stations/{id}', methods:'DELETE')]
     #[OA\Response(
         response: 200,
         description: 'Delete a station'

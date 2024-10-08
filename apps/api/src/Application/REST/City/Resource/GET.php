@@ -11,8 +11,6 @@ use App\Domain\Exception\CityNotFoundException;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Annotation\Route;
 
 final readonly class GET
 {
@@ -21,7 +19,6 @@ final readonly class GET
 
     }
 
-    #[Route('/api/cities/{id}', methods:'GET')]
     #[OA\Response(
         response: 200,
         description: 'Retrieve data of a city',

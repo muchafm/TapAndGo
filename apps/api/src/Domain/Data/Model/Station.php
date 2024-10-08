@@ -16,6 +16,7 @@ class Station
         public string $address,
         public int $totalStands,
         public int $availableBikes,
+        public int $number,
         public City $city
     ) {
         $this->id = \uuid_create();

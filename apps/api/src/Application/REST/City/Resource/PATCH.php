@@ -13,7 +13,6 @@ use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 final readonly class PATCH
 {
@@ -22,7 +21,6 @@ final readonly class PATCH
 
     }
 
-    #[Route('/api/cities/{id}', methods:'PATCH')]
     #[OA\RequestBody(
             description: 'Update a city',
             required: true,
