@@ -4,7 +4,7 @@ updates:
     directory: ./apps/api
     labels:
       - dependencies
-      - ':elephant: PHP'
+      - 'PHP'
     commit-message:
       prefix: chore
     schedule:
@@ -27,7 +27,7 @@ updates:
     directory: ./apps/api 
     labels:
       - dependencies
-      - ':whale: Dockerfile'
+      - 'Dockerfile'
     commit-message:
       prefix: chore
     schedule:
