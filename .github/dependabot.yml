@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: composer
-    directory: ./php
+    directory: ./apps/api
     labels:
       - dependencies
       - ':elephant: PHP'
@@ -24,7 +24,7 @@ updates:
           - 'symfony/*'
 
   - package-ecosystem: docker
-    directory: ./php
+    directory: ./apps/api 
     labels:
       - dependencies
       - ':whale: Dockerfile'
