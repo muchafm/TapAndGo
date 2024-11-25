@@ -6,7 +6,7 @@ COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 ##################################
 
-FROM composer:2.6.6 AS composer
+FROM composer:2.8.3 AS composer
 
 ##################################
 
