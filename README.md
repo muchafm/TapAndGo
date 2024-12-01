@@ -1,6 +1,10 @@
+# Subject
+
+TapAndGo provides bike parks for users in several cities. This project consists of an api that will feed a management and maintenance back-office, and a website that will display the location of the stations and the number of bikes available for users at each one.
+
 ### INSTRUCTIONS
 
-# With make
+## With make
 
 After cloning the project, install it using these commands (which require you to have Make on your machine):
 
@@ -11,7 +15,7 @@ After cloning the project, install it using these commands (which require you to
 ```make fixtures```
 
 
-# Without
+## Without
 
 After cloning the project, install it using these commands:
 
@@ -27,7 +31,7 @@ Then
 
 ``` docker-compose up -d ```
 
-# Data
+## Data
 
 ``` docker-compose run --rm api bin/console doctrine:database:drop --if-exists --force ```
 
