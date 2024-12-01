@@ -52,3 +52,8 @@ dock_post:
   path: api/docks
   controller: App\Application\REST\Dock\Resource\POST
   methods: POST
+
+dock_patch:
+  path: api/docks/{id}
+  controller: App\Application\REST\Dock\Resource\PATCH
+  methods: PATCH
