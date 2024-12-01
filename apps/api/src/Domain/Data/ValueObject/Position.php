@@ -16,7 +16,7 @@ final readonly class Position
             throw new \Exception("A latitude must be between -90.0 and +90.0, {$latitude} given.");
         }
 
-        if ($longitude < -90 || $longitude > 90) {
+        if ($longitude < -180 || $longitude > 180) {
             throw new \Exception("A longitude must be between -180.0 and +180.0, {$longitude} given.");
         }
 
