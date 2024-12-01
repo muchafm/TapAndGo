@@ -4,6 +4,7 @@ namespace spec\App\Domain\UseCase\AddAStation;
 
 use App\Domain\Data\Collection\Cities;
 use App\Domain\Data\Collection\Stations;
+use App\Domain\Data\Enum\State;
 use App\Domain\Data\Model\City;
 use App\Domain\Data\Model\Station;
 use App\Domain\Exception\CityNotFoundException;
@@ -32,26 +33,27 @@ class HandlerSpec extends ObjectBehavior
         Stations $stations,
         City $city
     ){
-        $input = new Input('09- CATHEDRALE', 'Rue Flatters', 49.898124385191046, 2.299395003901743, 30, 30, 'city-id');
+        $input = new Input('city-id', 'CATHEDRALE', 'Rue Flatters', 49.898124385191046, 2.299395003901743, 30);
         $cities->find('city-id')->willReturn($city);
+        $city->isActive()->willReturn(true);
 
         $stations->add(Argument::type(Station::class))->shouldBeCalled();
 
         $output = $this->__invoke($input);
 
         $output->shouldHaveType(Output::class);
-        $output->station->name->shouldBe('09- CATHEDRALE');
-        $output->station->address->shouldBe('Rue Flatters');
-        $output->station->position->latitude->shouldBe(49.898124385191046);
-        $output->station->position->longitude->shouldBe(2.299395003901743);
-        $output->station->totalStands->shouldBe(30);
-        $output->station->availableBikes->shouldBe(30);
+        $output->station->getName()->shouldBe('CATHEDRALE');
+        $output->station->getAddress()->shouldBe('Rue Flatters');
+        $output->station->getPosition()->getLatitude()->shouldBe(49.898124385191046);
+        $output->station->getPosition()->getLongitude()->shouldBe(2.299395003901743);
+        $output->station->getCapacity()->shouldBe(30);
+        $output->station->getState()->shouldBe(State::ENABLED);
     }
 
     public function it_throws_an_exception_when_the_city_does_not_exists(
         Cities $cities
     ){
-        $input = new Input('09- CATHEDRALE', 'Rue Flatters', 49.898124385191046, 2.299395003901743, 30, 30, 'city-id');
+        $input = new Input('city-id', 'CATHEDRALE', 'Rue Flatters', 49.898124385191046, 2.299395003901743, 30);
         $cities->find('city-id')->willReturn(null);
 
         $this->shouldThrow(CityNotFoundException::class)->during('__invoke', [$input]);

@@ -41,12 +41,12 @@ final readonly class GET
     {
         foreach ($output->cities as $city) {
             yield [
-                'id' => $city->id,
-                'name' => $city->name,
-                'latitude' => $city->position->latitude,
-                'longitude' => $city->position->longitude,
-                'isActive' => $city->isActive,
-                'stationIds' => 0 === \count($city->stations->toArray()) ? null : array_map(fn (Station $station): string => $station->id, $city->stations->toArray())
+                'id' => $city->getId(),
+                'name' => $city->getName(),
+                'latitude' => $city->getPosition()->getLatitude(),
+                'longitude' => $city->getPosition()->getLongitude(),
+                'isActive' => $city->isActive(),
+                'stationIds' => 0 === \count($city->getStations()->toArray()) ? null : array_map(fn (Station $station): string => $station->getId(), $city->getStations()->toArray())
             ];
         }
     }

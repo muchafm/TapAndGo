@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\UseCase\AddAStation;
 
 use App\Domain\Data\Collection\Cities;
+use App\Domain\Data\Enum;
 use App\Domain\Data\Model\Station;
 use App\Domain\Data\Collection\Stations;
 use App\Domain\Data\ValueObject\Position;
@@ -26,9 +27,9 @@ readonly class Handler
         $station = new Station(
             $input->name, 
             new Position($input->latitude, $input->longitude), 
-            $input->address, 
-            $input->totalStands, 
-            $input->availableBikes,
+            $input->address,
+            false !== $city->isActive() ? Enum\State::ENABLED : Enum\State::DISABLED,
+            $input->capacity,
             $city
         );
 
