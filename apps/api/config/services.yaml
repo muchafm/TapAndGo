@@ -24,4 +24,5 @@ services:
         resource: '%kernel.project_dir%/src/Infrastructure/Doctrine/Repository/*.php'
 
     App\Domain\Data\Collection\Cities: '@App\Infrastructure\Doctrine\Repository\CityRepository'
+    App\Domain\Data\Collection\Docks: '@App\Infrastructure\Doctrine\Repository\DockRepository'
     App\Domain\Data\Collection\Stations: '@App\Infrastructure\Doctrine\Repository\StationRepository'
