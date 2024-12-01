@@ -7,10 +7,11 @@ namespace App\Infrastructure\Doctrine\Types;
 use App\Domain;
 use Doctrine\DBAL\Types\StringType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use ReflectionEnum;
 
 final class StateType extends StringType
 {
-    public const NAME = 'State';
+    public const NAME = 'state';
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
@@ -28,7 +29,9 @@ final class StateType extends StringType
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return $value;
+        $reflection = new ReflectionEnum(Domain\Data\Enum\State::class);
+
+        return $reflection->getCase($value)->getValue();
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
@@ -36,7 +39,7 @@ final class StateType extends StringType
         if (!in_array($value, Domain\Data\Enum\State::cases())) {
             throw new \InvalidArgumentException("Invalid state");
         }
-        return $value;
+        return $value->name;
     }
 
     public function getName()
