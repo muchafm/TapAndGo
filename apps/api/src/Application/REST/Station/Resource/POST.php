@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\REST\Station\Resource;
 
 use App\Application\MessageBus;
+use App\Application\Validator;
 use App\Domain\Exception\CityNotFoundException;
 use App\Domain\UseCase\BackOffice\AddAStation;
 use JsonException;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 final readonly class POST
 {
-    public function __construct(private MessageBus $messageBus)
+    public function __construct(private MessageBus $messageBus, private Validator\Station $stationValidator)
     {
 
     }
@@ -48,6 +49,8 @@ final readonly class POST
                 true,
                 flags: JSON_THROW_ON_ERROR,
             );
+
+            $this->stationValidator->validatePostData($data);
 
         } catch (JsonException $exception) {
             return new JsonResponse($exception->getMessage(), Response::HTTP_BAD_REQUEST, json: true);
