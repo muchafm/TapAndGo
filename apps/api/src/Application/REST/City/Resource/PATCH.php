@@ -78,12 +78,12 @@ final readonly class PATCH
     private function serialize(ModifyACity\Output $output): array
     {
         return [
-            'id' => $output->city->id,
-            'name' => $output->city->name,
-            'latitude' => $output->city->position->latitude,
-            'longitude' => $output->city->position->longitude,
-            'isActive' => $output->city->isActive,
-            'stationIds' => 0 === \count($output->city->stations->toArray()) ? null : array_map(fn (Station $station): string => $station->id, $output->city->stations->toArray())
+            'id' => $output->city->getId(),
+            'name' => $output->city->getName(),
+            'latitude' => $output->city->getPosition()->getLatitude(),
+            'longitude' => $output->city->getPosition()->getLongitude(),
+            'isActive' => $output->city->isActive(),
+            'stationIds' => 0 === \count($output->city->getStations()->toArray()) ? null : array_map(fn (Station $station): string => $station->getId(), $output->city->getStations()->toArray())
         ];
     }
 }

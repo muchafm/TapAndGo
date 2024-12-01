@@ -18,8 +18,15 @@ final class PositionType extends JsonType
         return self::NAME;
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): Position
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?Position
     {
+        if (null === $value) {
+            return null;
+        }
+
+        /**
+         * @var array<string, float>
+         */
         $position = json_decode($value, true);
 
         return new Position($position['latitude'], $position['longitude']);
@@ -31,6 +38,6 @@ final class PositionType extends JsonType
             throw new RuntimeException('PositionType can only handle instance of Position');
         }
 
-        return (string)json_encode(['latitude' => $value->latitude, 'longitude' => $value->longitude]);
+        return (string)json_encode(['latitude' => $value->getLatitude(), 'longitude' => $value->getLongitude()]);
     }
 }

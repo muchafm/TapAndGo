@@ -69,11 +69,11 @@ final readonly class POST
     private function serialize(AddACity\Output $output): array
     {
         return [
-            'id' => $output->city->id,
-            'name' => $output->city->name,
-            'latitude' => $output->city->position->latitude,
-            'longitude' => $output->city->position->longitude,
-            'isActive' => $output->city->isActive
+            'id' => $output->city->getId(),
+            'name' => $output->city->getName(),
+            'latitude' => $output->city->getPosition()->getLatitude(),
+            'longitude' => $output->city->getPosition()->getLongitude(),
+            'isActive' => $output->city->isActive()
         ];
     }
 }

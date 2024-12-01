@@ -35,10 +35,10 @@ class HandlerSpec extends ObjectBehavior
         $output = $this->__invoke($input);
 
         $output->shouldHaveType(Output::class);
-        $output->city->name->shouldBe('Lyon');
-        $output->city->position->latitude->shouldBe(49.898124385191046);
-        $output->city->position->longitude->shouldBe(2.299395003901743);
-        $output->city->isActive->shouldBe(true);
+        $output->city->getName()->shouldBe('Lyon');
+        $output->city->getPosition()->getLatitude()->shouldBe(49.898124385191046);
+        $output->city->getPosition()->getLongitude()->shouldBe(2.299395003901743);
+        $output->city->isActive()->shouldBe(true);
     }
 
     public function it_throws_an_exception_when_the_name_of_the_city_already_exists(Cities $cities, City $city)

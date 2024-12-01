@@ -32,9 +32,8 @@ final readonly class PATCH
                         new OA\Property(property: 'address', description: 'Address of the station', type: 'string'),
                         new OA\Property(property: 'latitude', description: 'Latitude point', type: 'float'),
                         new OA\Property(property: 'longitude', description: 'Longitude', type: 'float'),
-                        new OA\Property(property: 'totalStands', description: 'Total stands of the station', type: 'integer'),
-                        new OA\Property(property: 'availableBikes', description: 'Number of bikes availables at the station', type: 'integer'),
-                        new OA\Property(property: 'city', description: 'Id of th city where the station is located', type: 'string')
+                        new OA\Property(property: 'capacity', description: 'Total docks of the station', type: 'integer'),
+                        new OA\Property(property: "state", description: "Current state of station", type: 'string')
                     ]
                 ),
             )
@@ -64,9 +63,7 @@ final readonly class PATCH
                     $data['address'] ?? null, 
                     $data['latitude'] ?? null, 
                     $data['longitude'] ?? null, 
-                    $data['totalStands'] ?? null,
-                    $data['availableBikes'] ?? null,
-                    $data['city'] ?? null
+                    $data['capacity'] ?? null
                 )
             );
 
@@ -84,14 +81,14 @@ final readonly class PATCH
     private function serialize(ModifyAStation\Output $output): array
     {
         return [
-            'id' => $output->station->id,
-            'name' => $output->station->name,
-            'address' => $output->station->address,
-            'latitude' => $output->station->position->latitude,
-            'longitude' => $output->station->position->longitude,
-            'totalStands' => $output->station->totalStands,
-            'availableBikes' => $output->station->availableBikes,
-            'cityId' => $output->station->city->id
+            'id' => $output->station->getId(),
+            'name' => $output->station->getName(),
+            'address' => $output->station->getAddress(),
+            'latitude' => $output->station->getPosition()->getLatitude(),
+            'longitude' => $output->station->getPosition()->getLongitude(),
+            'capacity' => $output->station->getCapacity(),
+            'cityId' => $output->station->getCity()->getId(),
+            'state' => $output->station->getState()->name
         ];
     }
 }

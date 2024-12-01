@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\UseCase\ModifyACity;
 
-use App\Domain\Data\Model\City;
 use App\Domain\Data\Collection\Cities;
 use App\Domain\Data\Collection\Stations;
-use App\Domain\Data\ValueObject\Position;
 use App\Domain\Exception\CityNotFoundException;
 
 readonly class Handler
@@ -34,22 +32,8 @@ readonly class Handler
                 }
             }
         }
-        
-        if (null !== $input->name) {
-            $city->name = $input->name;
-        }
 
-        if (null !== $input->latitude) {
-            $city->position = new Position($input->latitude, $city->position->longitude);
-        }
-
-        if (null !== $input->longitude) {
-            $city->position = new Position($city->position->latitude, $input->longitude);
-        }
-
-        if (null !== $input->isActive) {
-            $city->isActive = $input->isActive;
-        }
+        $city->update($input->name, $input->latitude, $input->longitude, $input->isActive);
 
         $this->cities->persist($city);
 

@@ -40,14 +40,13 @@ final readonly class GET
     {
         foreach ($output->stations as $station) {
             yield [
-                'id' => $station->id,
-                'name' => $station->name,
-                'address' => $station->address,
-                'latitude' => $station->position->latitude,
-                'longitude' => $station->position->longitude,
-                'totalStands' => $station->totalStands,
-                'availableBikes' => $station->availableBikes,
-                'cityId' => $station->city->id
+                'id' => $station->getId(),
+                'name' => $station->getName(),
+                'address' => $station->getAddress(),
+                'latitude' => $station->getPosition()->getLatitude(),
+                'longitude' => $station->getPosition()->getLongitude(),
+                'capacity' => $station->getCapacity(),
+                'cityId' => $station->getCity()->getId()
             ];
         }
     }

@@ -17,6 +17,9 @@ migrate:
 	docker-compose run --rm api bin/console doctrine:database:create --if-not-exists
 	docker-compose run --rm api bin/console doctrine:migration:migrate
 
+fixtures:
+	docker-compose exec api php bin/console doctrine:fixtures:load --append
+
 phpstan:
 	docker-compose exec api vendor/bin/phpstan
 

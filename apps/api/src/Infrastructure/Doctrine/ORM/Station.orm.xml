@@ -8,11 +8,9 @@
         <id name="id" type="guid" />
 
         <field name="name" type="string" />
-        <field name="number" type="integer" />
         <field name="position" type="positionType" />
         <field name="address" type="string"/>
-        <field name="totalStands" type="integer"/>
-        <field name="availableBikes" type="integer"/>
+        <field name="capacity" type="integer" />
 
         <many-to-one
             field="city"
@@ -21,5 +19,15 @@
         >
           <join-column name="city_id" referenced-column-name="id" nullable="false" />
         </many-to-one>
+        <one-to-many
+            field="docks"
+            target-entity="App\Domain\Data\Model\Dock"
+            mapped-by="station"
+            orphan-removal="true"
+        >
+            <cascade>
+                <cascade-persist />
+            </cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>
