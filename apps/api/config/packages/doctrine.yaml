@@ -9,6 +9,7 @@ doctrine:
         server_version: 8.0
         types:
             positionType: App\Infrastructure\Doctrine\Types\PositionType
+            stateType: App\Infrastructure\Doctrine\Types\StateType
     orm:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
