@@ -48,6 +48,11 @@ station_delete:
   controller: App\Application\REST\Station\Resource\DELETE
   methods: DELETE
 
+dock_get:
+  path: api/docks/{id}
+  controller: App\Application\REST\Dock\Resource\GET
+  methods: GET
+
 dock_post:
   path: api/docks
   controller: App\Application\REST\Dock\Resource\POST
