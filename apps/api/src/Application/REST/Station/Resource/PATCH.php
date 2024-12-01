@@ -6,7 +6,7 @@ namespace App\Application\REST\Station\Resource;
 
 use App\Application\MessageBus;
 use App\Domain\Exception\CityNotFoundException;
-use App\Domain\UseCase\ModifyAStation;
+use App\Domain\UseCase\BackOffice\ModifyAStation;
 use App\Domain\Exception\StationNotFoundException;
 use JsonException;
 use OpenApi\Attributes as OA;

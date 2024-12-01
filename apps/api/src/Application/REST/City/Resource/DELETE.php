@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\REST\City\Resource;
 
 use App\Application\MessageBus;
-use App\Domain\UseCase\RemoveACity;
+use App\Domain\UseCase\BackOffice\RemoveACity;
 use App\Domain\Exception\CityNotFoundException;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;

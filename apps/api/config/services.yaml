@@ -14,7 +14,7 @@ services:
     App\Domain\UseCase\:
         tags:
             - messenger.message_handler
-        resource: '%kernel.project_dir%/src/Domain/UseCase/*/Handler.php'
+        resource: '%kernel.project_dir%/src/Domain/UseCase/**/Handler.php'
 
     App\Infrastructure\Symfony\Messenger\MessageBus: ~
 

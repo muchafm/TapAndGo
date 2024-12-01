@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\REST\Station\Resource;
 
 use App\Application\MessageBus;
-use App\Domain\UseCase\RetrieveAStation;
+use App\Domain\UseCase\BackOffice\RetrieveAStation;
 use App\Domain\Exception\StationNotFoundException;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;

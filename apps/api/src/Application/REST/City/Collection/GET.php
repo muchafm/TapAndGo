@@ -6,7 +6,7 @@ namespace App\Application\REST\City\Collection;
 
 use App\Application\MessageBus;
 use App\Domain\Data\Model\Station;
-use App\Domain\UseCase\RetrieveAllCities;
+use App\Domain\UseCase\BackOffice\RetrieveAllCities;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;

@@ -6,7 +6,7 @@ namespace App\Application\REST\Station\Resource;
 
 use App\Application\MessageBus;
 use App\Domain\Exception\CityNotFoundException;
-use App\Domain\UseCase\AddAStation;
+use App\Domain\UseCase\BackOffice\AddAStation;
 use JsonException;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;

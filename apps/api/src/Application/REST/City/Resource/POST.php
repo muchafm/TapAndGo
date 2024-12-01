@@ -6,7 +6,7 @@ namespace App\Application\REST\City\Resource;
 
 use App\Application\MessageBus;
 use App\Domain\Exception\CityAlreadyExistsException;
-use App\Domain\UseCase\AddACity;
+use App\Domain\UseCase\BackOffice\AddACity;
 use JsonException;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
